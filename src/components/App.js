@@ -7,6 +7,7 @@ import CreateUser from '../pages/CreateUser';
 import EditPost from '../pages/EditPost';
 import Error from '../pages/Error'
 import history from '../history';
+import NavBar from './NavBar';
 
 
 
@@ -15,6 +16,7 @@ const App = () => {
     return(
         <div>
             <Router history={history}>
+                <NavBar/>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/feeds/" component={Feeds} />

@@ -1,7 +1,10 @@
 import React from "react";
+import UserForm from "../components/UserForm";
 
 const CreateUser = () => {
-  return <div>Create User Page</div>
+  return (
+    <div className="common"><UserForm/></div>
+  )
 };
 
 export default CreateUser;

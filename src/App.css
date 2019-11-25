@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  border: 0;
+  max-width: inherit;
   box-sizing: border-box;
 }
 :root {
@@ -52,7 +54,13 @@ h6 {
   font-weight: bold;
   margin-bottom: 1.5em;
 }
-
+img {
+  height: 3em;
+  width: 200px;
+}
+.common {
+  margin-top: 3rem;
+}
 .btn-primary {
   display: inline-block;
   text-decoration: none;
@@ -133,7 +141,7 @@ h6 {
 }
 
 .show-nav {
-  height: 100px;
+  height: 350px;
 }
 @media screen and (min-width: 768px) {
   .nav-btn {
@@ -155,6 +163,121 @@ h6 {
   }
 }
 /* end of navbar */
+
+/* form */
+form {
+  display: block;
+}
+form>div>label {
+	float: left;
+	text-align: right;
+	margin-right: 15px;
+  font-weight: 700;
+  min-width: 150px;
+  padding: 6px 9px;
+}
+textarea:focus, input:focus {
+	border: 2px solid #900;
+}
+form>div>#label{
+  width: 400px;
+  padding-right: 10px;
+}
+form>div>div>input, form>div>div>select {
+  width: 400px;
+  border: 5px solid white; 
+  -webkit-box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  -moz-box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  box-shadow: 
+    inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1); 
+  padding: 15px;
+  background: rgba(255,255,255,0.5);
+  margin: 0 0 10px 0;
+}
+.form-div {
+  margin: 0 auto;
+  width: 700px;
+}
+.next {
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: #fff;
+  background-image: linear-gradient(#4f93ce,#285f8f);
+  border: 1px solid #285f8f;
+}
+.fa-icon {
+  padding-top: 8px;
+  height: 25px;
+}
+form>div button {
+  margin: 10px;
+}
+.previous {
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: #fff;
+  background-image: linear-gradient(#fff,#d5d5d5);
+  border: 1px solid #d5d5d5;
+  color: #000;
+}
+form > div {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 10px 5px
+}
+form>div>div>label {
+  border: none;
+  padding-left: 0;
+}
+form>div>div>* {
+  -ms-flex: 1;
+  flex: 1;
+  font-size: 16px;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+}
+form>div>div>span:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-right: 5px;
+}
+form>div>div>span {
+  border: none;
+  font-weight: 700;
+  color: #700;
+}
+@media (max-width: 400px) {
+  form>div {
+    -ms-flex-flow: column nowrap;
+    flex-flow: column;
+  }
+  form>div>label {
+    text-align: left;
+  }
+  form>div>div>input, form>div>div>select, form>div>#label, .next, .previous {
+    max-width: 300px;
+  }
+}
+/* end of form */
 /* Hero */
 .defaultHero,
 .roomsHero {

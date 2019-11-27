@@ -1,5 +1,7 @@
-import {signin, createUser} from '../../services/api-stuffs'
-import history from '../history'
+import history from '../../history'
+import store from '../store'
+import {signin, createUser} from '../../services/api-auth';
+import { authenticate } from '../../services/auth-helper'
 import {
     createGif,
     createArticle, 
@@ -35,9 +37,11 @@ import {
 } from './types'
 
 
-export const signIn = () => async dispatch => {
-    const response = await signin();
-    dispatch({type: SIGN_IN, payload: response.data});
+export const signIn = (user) => async dispatch => {
+    const response = await signin(user);
+    authenticate(response.payload);
+    dispatch({type: SIGN_IN, payload: response.payload});
+    history.push('/feeds');
 }
 
 export const logout = (credentials) => async dispatch => {
@@ -48,8 +52,9 @@ export const logout = (credentials) => async dispatch => {
 
 export const createUsers = (user, credentials) => async dispatch => {
     const response = await createUser(user, credentials);
-    dispatch({type: CREATE_USER, payload: response.data});
-    history.push('/');
+    console.log(response.payload)
+    dispatch({type: CREATE_USER, payload: response.payload});
+    history.push('/feeds');
 }
 
 export const createGifs = (post, credentials) => async dispatch => {
@@ -66,7 +71,7 @@ export const createArticles = (post, credentials) => async dispatch => {
 
 export const articleComment = (params, credentials, post) => async dispatch => {
     const id = post.articleId;
-    const article = getState().posts[id]
+    const article = store.getState().posts[id]
     typeof article['comment'] === 'undefined' ? article['comment'] = [post] : article['comment'] = [...article['comment'], post]
     await createArticleComment(params, credentials, post);
     dispatch({type: CREATE_ARTICLE_COMMENT, payload: article});
@@ -75,7 +80,7 @@ export const articleComment = (params, credentials, post) => async dispatch => {
 
 export const gifComment = (params, credentials, post) => async dispatch => {
     const id = post.gifId;
-    const gif = getState().posts[id]
+    const gif = store.getState().posts[id]
     typeof gif['comment'] === 'undefined' ? gif['comment'] = [post] : gif['comment'] = [...gif['comment'], post]
     await createGifComment(params, credentials, post);
     dispatch({type: CREATE_GIF_COMMENT, payload: gif});
@@ -89,21 +94,21 @@ export const articleUpdate = (params, credentials, post) => async dispatch => {
 }
 
 export const deleteArticles = (params, credentials) => async dispatch => {
-    const data = getState().posts[params.articleId]
+    const data = store.getState().posts[params.articleId]
     await deleteArticle(params, credentials);
     dispatch({type: DELETE_ARTICLE, payload: data});
     history.push('/');
 }
 
 export const deleteGifs = (params, credentials) => async dispatch => {
-    const data = getState().posts[params.gifId]
+    const data = store.getState().posts[params.gifId]
     await deleteGif(params, credentials);
     dispatch({type: DELETE_GIF, payload: data});
     history.push('/');
 }
 
 export const deleteFlags = (params, credentials, tableName) => async dispatch => {
-    const data = getState().posts[params.id]
+    const data = store.getState().posts[params.id]
     await deleteFlag(params, credentials, tableName);
     dispatch({type: DELETE_FLAG, data});
     history.push('/');

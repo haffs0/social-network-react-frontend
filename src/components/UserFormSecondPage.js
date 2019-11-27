@@ -25,19 +25,19 @@ const UserFormSecondPage = props => {
     <form onSubmit={handleSubmit}>
       <Field name="password" type="password" component={renderField} label="Password" />
       <div>
-        <label>Sex</label>
+        <label>Gender</label>
         <div id="label">
           <label>
-            <Field name="sex" component="input" type="radio" value="male" />
+            <Field name="gender" component="input" type="radio" value="male" />
             {' '}
             Male
           </label>
           <label>
-            <Field name="sex" component="input" type="radio" value="female" />
+            <Field name="gender" component="input" type="radio" value="female" />
             {' '}
             Female
           </label>
-          <Field name="sex" component={renderError} />
+          <Field name="gender" component={renderError} />
         </div>
       </div>
       <div>

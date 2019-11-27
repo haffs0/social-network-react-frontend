@@ -4,7 +4,6 @@ const authenticate = (jwt, cb) => {
     if(typeof window !== "undefined") {
         sessionStorage.setItem('jwt',JSON.stringify(jwt))
     }
-    cb()
 }
     
 const isAuthenticated = () => {
@@ -21,10 +20,6 @@ const isAuthenticated = () => {
 const signout = (cb) => {
     if(typeof window !== "undefined")
         sessionStorage.removeItem('jwt')
-    cb()
-    signout().then((data) => {
-        document.cookie = "t=; expires=Thu, UTC; path=/;"
-    })
 }
 
 export { authenticate, isAuthenticated, signout}

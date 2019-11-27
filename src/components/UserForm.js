@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createUsers } from '../redux/actions'
+import { isAuthenticated } from '../services/auth-helper';
 import UserFormFirstPage from './UserFormFirstPage';
 import UserFormSecondPage from './UserFormSecondPage';
 import UserFormThirdPage from './UserFormThirdPage';
@@ -21,6 +24,8 @@ class UserForm extends Component {
   }
   onSubmit = (formValues) => {
     console.log(formValues)
+    const token = isAuthenticated().token
+    this.props.createUsers(formValues, token)
   }
   render() {
     const { page } = this.state;
@@ -42,4 +47,5 @@ class UserForm extends Component {
   }
 }
 
-export default UserForm;
+export default connect(null, {createUsers})(UserForm)
+

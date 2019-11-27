@@ -1,29 +1,33 @@
+const baseUrl = 'http://localhost:3003' 
+
 const createUser = (user, credentials) => {
-    return fetch('/api/v1/auth/create-user', {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`${baseUrl}/api/v1/auth/create-user`, {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'applicatiion/json',
-            'Authorization': 'Bearer ' + credentials.token
-        },
-        body: JSON.stringify(user)
+        mode:'cors',
+        cache: 'default',
+        body: JSON.stringify(user), // formData
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))
 }
 const signin = (user) => {
-    return fetch('/api/v1/auth/signin', {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return fetch(`${baseUrl}/api/v1/auth/signin`, {
         method: 'POST',
-        header: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(user)
+        mode:'cors',
+        cache: 'default',
+        body: JSON.stringify(user), // formData
+        headers: headers,
     })
     .then((response) => {
         return response.json()
-    }).catch((err) => console.log(err))
+    })
+    .catch((err) => console.log(err))
 }
 
 export {signin, createUser}

@@ -1,15 +1,59 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { FaAlignRight } from "react-icons/fa";
 import team from "../images/team.png";
+import { isAuthenticated, signout } from '../services/auth-helper';
+import { logout } from '../redux/actions/index'
 
-export default class NavBar extends Component {
+
+class NavBar extends Component {
   state = {
     isOpen: false
   };
   handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+  onClick = () => {
+    this.props.logout(isAuthenticated().token)
+    signout()
+  }
+  renderAdminCreate = () => {
+    if (isAuthenticated().role === 'Admin') {
+      return <li><Link to="/createuser">Create user</Link></li>
+    } 
+  }
+  renderMenu = () => {
+    console.log(this.props.IsSignedIn)
+    if (isAuthenticated()) {
+      return (
+          <ul className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/rooms">Write a post</Link>
+            </li>
+            <li>
+              <Link to="/rooms">Post a gif</Link>
+            </li>
+            {this.renderAdminCreate()}
+            <li>
+              <Link to="/" onClick={this.onClick}>Logout</Link>
+            </li>
+          </ul>
+      )
+    }
+    else {
+      return(
+        <ul className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}>
+          <li>
+            <Link to="/signin">Login</Link>
+          </li>
+        </ul>     
+      )
+    }
+  }
   render() {
     return (
       <nav className="navbar">
@@ -26,30 +70,14 @@ export default class NavBar extends Component {
               <FaAlignRight className="nav-icon" />
             </button>
           </div>
-          <ul
-            className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}
-          >
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/rooms">Write a post</Link>
-            </li>
-            <li>
-              <Link to="/rooms">Post a gif</Link>
-            </li>
-            <li>
-              <Link to="/createuser">Create user</Link>
-            </li>
-            <li>
-              <Link to="/rooms">Login</Link>
-            </li>
-            <li>
-              <Link to="/rooms">Logout</Link>
-            </li>
-          </ul>
+          {this.renderMenu()}
         </div>
       </nav>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {IsSignedIn: state.user.isSignIn}
+}
+
+export default connect(mapStateToProps, {logout})(NavBar)

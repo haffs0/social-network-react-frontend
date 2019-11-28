@@ -1,3 +1,5 @@
+const baseUrl = 'http://localhost:3003' 
+
 const createGif = (post, credentials) => {
     return fetch('/api/v1/gifs', {
         method: 'POST',
@@ -187,13 +189,13 @@ const deleteFlag = (params, credentials, tableName) => {
 }
 
 const signout = (credentials) => {
-    return fetch('/api/v1/logout', {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`${baseUrl}/api/v1/logout`, {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then(response => {
         return response.json()
     }).catch((err) => console.log(err))

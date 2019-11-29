@@ -27,9 +27,9 @@ export default (state = {}, action) => {
         case CREATE_GIF_COMMENT:
             return {...state, [action.payload.id]: action.payload};
         case DELETE_GIF:
-            return _.omit(state, action.payload);
+            return _.omit(state, action.payload.id);
         case DELETE_ARTICLE:
-            return _.omit(state, action.payload);
+            return _.omit(state, action.payload.id);
         case SINGLE_ARTICLE:
             return {...state, [action.payload.id]: action.payload};
         case SINGLE_GIF:

@@ -1,7 +1,8 @@
 import React from "react";
+import PostList from "../components/PostList";
 
 const Feeds = () => {
-  return <div className="common">Feeds Page</div>
+  return <PostList/>
 };
 
 export default Feeds;

@@ -59,14 +59,15 @@ export const createUsers = (user, credentials) => async dispatch => {
 
 export const createGifs = (post, credentials) => async dispatch => {
     const response = await createGif(post, credentials);
-    dispatch({type: CREATE_GIF, payload: response.data});
-    history.push('/');
+    dispatch({type: CREATE_GIF, payload: response.payload});
+    history.push('/feeds');
 }
 
 export const createArticles = (post, credentials) => async dispatch => {
     const response = await createArticle(post, credentials);
-    dispatch({type: CREATE_ARTICLE, payload: response.data});
-    history.push('/');
+    console.log(response)
+    dispatch({type: CREATE_ARTICLE, payload: response.payload});
+    history.push('/feeds');
 }
 
 export const articleComment = (params, credentials, post) => async dispatch => {
@@ -87,24 +88,24 @@ export const gifComment = (params, credentials, post) => async dispatch => {
     history.push('/');
 }
 
-export const articleUpdate = (params, credentials, post) => async dispatch => {
+export const editArticle = (params, credentials, post) => async dispatch => {
     const response = await updateArticle(params, credentials, post);
-    dispatch({type: UPDATE_ARTICLE, payload: response.data});
-    history.push('/');
+    dispatch({type: UPDATE_ARTICLE, payload: response.payload});
+    history.push('/feeds');
 }
 
 export const deleteArticles = (params, credentials) => async dispatch => {
-    const data = store.getState().posts[params.articleId]
+    const data = store.getState().posts[params]
     await deleteArticle(params, credentials);
     dispatch({type: DELETE_ARTICLE, payload: data});
-    history.push('/');
+    history.push('/feeds');
 }
 
 export const deleteGifs = (params, credentials) => async dispatch => {
-    const data = store.getState().posts[params.gifId]
+    const data = store.getState().posts[params]
     await deleteGif(params, credentials);
     dispatch({type: DELETE_GIF, payload: data});
-    history.push('/');
+    history.push('/feeds');
 }
 
 export const deleteFlags = (params, credentials, tableName) => async dispatch => {
@@ -126,18 +127,17 @@ export const flags = (params, credentials, tableName) => async dispatch => {
     history.push('/');
 }
 
-export const feed = (credentials) => async dispatch => {
+export const fetchFeeds = (credentials) => async dispatch => {
     const response = await feeds(credentials);
-    dispatch({type: FEEDS, payload: response.data});
-    history.push('/');
+    dispatch({type: FEEDS, payload: response.payload});
 }
 
-export const viewArticle = (params, credentials) => async dispatch => {
+export const fetchArticle = (params, credentials) => async dispatch => {
     const response = await singleArticle(params, credentials);
-    dispatch({type: SINGLE_ARTICLE, payload: response.data});
+    dispatch({type: SINGLE_ARTICLE, payload: response.payload});
 }
 
-export const viewGif = (params, credentials) => async dispatch => {
+export const fetchGif = (params, credentials) => async dispatch => {
     const response = await singleGif(params, credentials);
     dispatch({type: SINGLE_GIF, payload: response.data});
 }

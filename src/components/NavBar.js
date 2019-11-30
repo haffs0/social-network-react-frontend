@@ -29,13 +29,13 @@ class NavBar extends Component {
       return (
           <ul className={this.state.isOpen ? "nav-links show-nav" : "nav-links"}>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/feeds">Home</Link>
             </li>
             <li>
-              <Link to="/rooms">Write a post</Link>
+              <Link to="/post/new">Write a post</Link>
             </li>
             <li>
-              <Link to="/rooms">Post a gif</Link>
+              <Link to="/gif/new">Post a gif</Link>
             </li>
             {this.renderAdminCreate()}
             <li>

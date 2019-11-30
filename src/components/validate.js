@@ -28,6 +28,12 @@ const validate = values => {
     if (!values.department) {
       errors.department = 'Required';
     }
+    if (!values.title) {
+      errors.title = 'Required';
+    }
+    if (!values.article) {
+      errors.article = 'Required';
+    }
     if (!values.address) {
       errors.address = 'Required';
     }

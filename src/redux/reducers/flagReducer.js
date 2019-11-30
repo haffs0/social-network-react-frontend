@@ -7,7 +7,7 @@ export default (state = {}, action) => {
         case FLAG:
             return {..._.mapKeys(action.payload, 'id')};
         case DELETE_FLAG:
-                return _.omit(state, action.payload);
+                return _.omit(state, action.payload.id);
         default: 
             return state;
     }

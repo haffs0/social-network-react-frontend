@@ -1,42 +1,45 @@
-const baseUrl = 'http://localhost:3003' 
-
+ 
 const createGif = (post, credentials) => {
+    const formData = new FormData();
+    formData.append('title', post.title)
+    formData.append('userId', post.userId)
+    formData.append('image', post.attachment);
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer${credentials}`);
     return fetch('/api/v1/gifs', {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer ' + credentials.token
-        },
-        body: JSON.stringify(post)
+        mode:'cors',
+        headers: headers,
+        body: formData, // formData
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))
 }
 
 const createArticle = (post, credentials) => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
     return fetch('/api/v1/articles', {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'applicatiion/json',
-            'Authorization': 'Bearer ' + credentials.token
-        },
-        body: JSON.stringify(post)
+        mode:'cors',
+        cache: 'default',
+        body: JSON.stringify(post), // formData
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))
 }
 
 const updateArticle = (params, credentials, post) => {
-    return fetch(`/api/v1/articles/${params.articleId}`, {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`/api/v1/articles/${params}`, {
         method: 'PATCH',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + credentials.token
-        },
-        body: JSON.stringify(post)
+        mode: 'cors',
+        body: JSON.stringify(post),
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => {
@@ -45,13 +48,13 @@ const updateArticle = (params, credentials, post) => {
 }
 
 const deleteArticle = (params, credentials) => {
-    return fetch(`/api/v1/articles/${params.articleId}`, {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`/api/v1/articles/${params}`, {
         method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => {
@@ -60,13 +63,13 @@ const deleteArticle = (params, credentials) => {
 }
 
 const deleteGif = (params, credentials) => {
-    return fetch(`/api/v1/gifs/${params.gifId}`, {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`/api/v1/gifs/${params}`, {
         method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => {
@@ -104,26 +107,26 @@ const createGifComment = (params, credentials, post) => {
 }
 
 const feeds = (credentials) => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
     return fetch('/api/v1/feeds', {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'applicatiion/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))
 }
 
 const singleArticle = (params, credentials) => {
-    return fetch(`/api/v1/articles/${params.articleId}`, {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`/api/v1/articles/${params}`, {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'applicatiion/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))
@@ -192,7 +195,7 @@ const signout = (credentials) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', `Bearer${credentials}`);
-    return fetch(`${baseUrl}/api/v1/logout`, {
+    return fetch('/api/v1/logout', {
         method: 'GET',
         mode: 'cors',
         headers: headers,

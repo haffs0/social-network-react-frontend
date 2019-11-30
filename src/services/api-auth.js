@@ -1,10 +1,9 @@
-const baseUrl = 'http://localhost:3003' 
 
 const createUser = (user, credentials) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', `Bearer${credentials}`);
-    return fetch(`${baseUrl}/api/v1/auth/create-user`, {
+    return fetch('/api/v1/auth/create-user', {
         method: 'POST',
         mode:'cors',
         cache: 'default',
@@ -17,7 +16,7 @@ const createUser = (user, credentials) => {
 const signin = (user) => {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return fetch(`${baseUrl}/api/v1/auth/signin`, {
+    return fetch('/api/v1/auth/signin', {
         method: 'POST',
         mode:'cors',
         cache: 'default',

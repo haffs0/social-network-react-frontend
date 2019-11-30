@@ -5,10 +5,12 @@ import Home from './pages/Home';
 import Feeds from './pages/Feeds';
 import CreateUser from './pages/CreateUser';
 import EditPost from './pages/EditPost';
+import Post from './pages/Post';
 import SignIn from './pages/SignIn';
 import Error from './pages/Error'
 import history from './history';
 import NavBar from './components/NavBar';
+import CreateGif from './pages/CreateGif';
 
 
 
@@ -23,7 +25,9 @@ const App = () => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/feeds/" component={Feeds} />
                     <Route exact path="/createuser" component={CreateUser} />
-                    <Route exact path="/editpost/" component={EditPost} />
+                    <Route exact path="/post/new" component={Post} />
+                    <Route exact path="/gif/new" component={CreateGif} />
+                    <Route exact path="/post/edit/:id" component={EditPost} />
                     <Route exact path="/signin/" component={SignIn} />
                     <Route component={Error} />
                 </Switch>

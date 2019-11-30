@@ -183,7 +183,7 @@ form>div>#label{
   width: 400px;
   padding-right: 10px;
 }
-form>div>div>input, form>div>div>select {
+form>div>div>input, form>div>div>select, input {
   width: 400px;
   border: 5px solid white; 
   -webkit-box-shadow: 
@@ -295,6 +295,93 @@ form>div>div>span {
   justify-content: center;
 }
 /* end of login form*/
+
+/*post form*/
+#article {
+  text-align: center;
+}
+textarea {
+  width: 400px;
+  height: 200px;
+  border: 1px solid #888; 
+}
+/*end of post form*/
+/*feeds*/
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.py {
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+.myGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #fff;
+  background-clip: border-box;
+  /* border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: 0.25rem; */
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25em;
+}
+.border-dark {
+  border-color: #343a40!important;
+}
+.border {
+  border: 1px solid #dee2e6!important;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.mySubGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+}
+.btn-links {
+  display: flex;
+  align-self: flex-end;
+}
+.btn-pad {
+  margin-left: 10px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.a-btn {
+  border: 1px solid rgba(0,0,0,0.125);
+  color: #fff;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+.rb {
+  background-color: red;
+}
+.ga {
+  background-color: green;
+}
+.ba {
+  background-color: blue;
+}
+/*end of feeds*/
 /* Hero */
 .defaultHero,
 .roomsHero {

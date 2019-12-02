@@ -60,7 +60,7 @@ class PostList extends Component {
             return (
                 <div className="card mx-2" key={post.id}>
                     <div className="card-body mySubGrid">
-                        <h2><Link to={`/posts/${post.id}`} className="text-danger my-2">{post.title}</Link></h2>
+                        <h2><Link to={`/post/specific/${post.id}`} className="text-danger my-2">{post.title}</Link></h2>
                         <p>{post.name} {post.createdOn}</p>
                         {this.renderType(post)}
                     </div>

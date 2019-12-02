@@ -38,10 +38,18 @@ import {
 
 
 export const signIn = (user) => async dispatch => {
-    const response = await signin(user);
-    authenticate(response.payload);
-    dispatch({type: SIGN_IN, payload: response.payload});
-    history.push('/feeds');
+    try {
+        const response = await signin(user);
+        console.log(response.payload)
+        if(response.payload.success) {
+            authenticate(response.payload);
+            dispatch({type: SIGN_IN, payload: response.payload});
+            history.push('/feeds');
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 
 export const logout = (credentials) => async dispatch => {
@@ -139,7 +147,7 @@ export const fetchArticle = (params, credentials) => async dispatch => {
 
 export const fetchGif = (params, credentials) => async dispatch => {
     const response = await singleGif(params, credentials);
-    dispatch({type: SINGLE_GIF, payload: response.data});
+    dispatch({type: SINGLE_GIF, payload: response.payload});
 }
 
 

@@ -16,6 +16,7 @@ const FileInput = ({
 }) => {
   return (
     <input
+      className="pic"
       onChange={adaptFileEventToValue(onChange)}
       onBlur={adaptFileEventToValue(onBlur)}
       type="file"

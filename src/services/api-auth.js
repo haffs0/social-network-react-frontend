@@ -1,4 +1,3 @@
-
 const createUser = (user, credentials) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

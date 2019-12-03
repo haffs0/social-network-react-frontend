@@ -133,13 +133,13 @@ const singleArticle = (params, credentials) => {
 }
 
 const singleGif = (params, credentials) => {
-    return fetch(`/api/v1/gifs/${params.gifId}`, {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer${credentials}`);
+    return fetch(`/api/v1/gifs/${params}`, {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'applicatiion/json',
-            'Authorization': 'Bearer ' + credentials.token
-        }
+        mode: 'cors',
+        headers: headers,
     }).then((response) => {
         return response.json()
     }).catch((err) => console.log(err))

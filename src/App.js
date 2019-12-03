@@ -11,6 +11,7 @@ import Error from './pages/Error'
 import history from './history';
 import NavBar from './components/NavBar';
 import CreateGif from './pages/CreateGif';
+import ViewSpecificPost from './pages/ViewSpecificPost';
 
 
 
@@ -24,7 +25,8 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/feeds/" component={Feeds} />
-                    <Route exact path="/createuser" component={CreateUser} />
+                    <Route exact path="/createuser" component={CreateUser}/>
+                    <Route exact path="/post/specific/:id" component={ViewSpecificPost} />
                     <Route exact path="/post/new" component={Post} />
                     <Route exact path="/gif/new" component={CreateGif} />
                     <Route exact path="/post/edit/:id" component={EditPost} />
